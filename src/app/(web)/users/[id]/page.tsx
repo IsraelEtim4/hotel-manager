@@ -89,7 +89,8 @@ const UserDetails = (props: { params: { id: string } }) => {
 
   if (loadingUserData) return <LoadingSpinner />;
   if (!userData) throw new Error('Cannot fetch data');
-  if (!userData) throw new Error('Cannot fetch data');
+  
+  const avatarSrc = userData.image ?? '/images/images.jpeg';
 
   return (
     <div className='container mx-auto px-2 md:px-4 py10'>
@@ -97,8 +98,8 @@ const UserDetails = (props: { params: { id: string } }) => {
         <div className='hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4'>
           <div className='md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden'>
             <Image
-              src={userData.image}
-              alt={userData.name}
+              src={avatarSrc}
+              alt={userData.name ?? 'User avatar'}
               width={143}
               height={143}
               className='img scale-animation rounded-full'
@@ -129,8 +130,8 @@ const UserDetails = (props: { params: { id: string } }) => {
               className='img scale-animation rounded-full'
               width={56}
               height={56}
-              src={userData.image}
-              alt='User  Name'
+              src={avatarSrc}
+              alt={userData.name ?? 'User avatar'}
             />
           </div>
           <p className='block w-fit md:hidden text-sm py-2'>
